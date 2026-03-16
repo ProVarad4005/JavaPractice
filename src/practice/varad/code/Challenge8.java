@@ -33,7 +33,7 @@ Good luck.
 //
 //}
 
-//Two-Pointer Trick
+//Two-Pointer Method
 package practice.varad.code;
 
 public class Challenge8 {
