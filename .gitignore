@@ -1,0 +1,24 @@
+# Eclipse Workspace Metadata
+.metadata/
+RemoteSystemsTempFiles/
+Servers/
+
+# Compiled Java Class Files
+bin/
+*.class
+
+# Project-specific settings
+.settings/
+.classpath
+.project
+
+# File Synchronization
+.stfolder/
+.stversions/
+
+# OS Hidden Files
+.DS_Store
+Thumbs.db
+
+# Ignored Projects
+surprise_test/
