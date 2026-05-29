@@ -27,8 +27,7 @@ package com.database.engine;
 import java.sql.*;
 
 public class Question1 {
-
-	public static void main(String[] args) {
+	public static void insertBug() {
 		String url="jdbc:mysql://localhost:3306/practice";
 		String username="root";
 		String password="Varad@101";
@@ -49,6 +48,9 @@ public class Question1 {
 			System.out.println("CONNECTION DENIED: Check your password or ensure MySQL is running.");
 			e.printStackTrace();
 		}
+	}
+	public static void main(String[] args) {
+		insertBug();
 	}
 
 }

@@ -1,41 +1,41 @@
 /**
  * ============================================================================
- * QUESTION 7: The Dashboard (Data Aggregation)
+ * QUESTION 8: The Triage (Sorting)
  * ============================================================================
  * * THE SCENARIO:
- * The CEO doesn't have time to read individual bug reports. They just want 
- * to see one big number: "How many bugs are currently in this status?"
+ * The team is overwhelmed. They need to see the most critical bugs at the 
+ * top of their feed so they know what to fix first.
  * * THE MISSION:
- * Write a method `countBugsByStatus(String status)` that queries the database 
- * and prints the TOTAL NUMBER of tickets that match that status.
+ * Write a method `sortBugsByPriority()` that retrieves all tickets and prints 
+ * them ordered by their priority level (Highest number first).
  * * SPECIFICATIONS:
  * - Database: 'practice'
  * - Table: 'tickets'
- * - The SQL Trick: Use the SQL `COUNT(*)` function instead of `SELECT *`.
- * - Security Constraint: Keep using the PreparedStatement '?' for the status.
- * - The Java Trick: Since COUNT() only returns a single number (one row, 
- * one column), you don't need a `while` loop. You just need to extract that 
- * specific integer from the ResultSet.
+ * - The SQL Trick: You don't need a WHERE clause this time. You need to use 
+ * the SQL `ORDER BY` clause combined with `DESC` (Descending).
+ * - Output: Use a while(rs.next()) loop to print the tickets cleanly.
  * ============================================================================
  */
 package com.database.engine;
 import java.sql.*;
 
-public class Question7 {
-	public static void countBugsByStatus(String Status) {
+public class Question8 {
+	public static void sortBugsByPriority() {
 		String url="jdbc:mysql://localhost:3306/practice";
 		String username="root";
 		String password="Varad@101";
-		String query="SELECT COUNT(*) FROM tickets WHERE status=?";
+		String query="SELECT * FROM tickets ORDER BY priority DESC";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url,username,password);
 			PreparedStatement pstmt = con.prepareStatement(query);
-			pstmt.setString(1, Status);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				int number = rs.getInt(1);
-				System.out.println("Number of bugs with status:"+Status+"="+number);
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				int priority = rs.getInt("priority");
+				String status = rs.getString("status");
+				System.out.println("ID: "+id+" | "+"Title: "+title+" | "+"Priortiy: "+priority+" | "+"Status: "+status);
 			}
 			rs.close();
 			pstmt.close();
@@ -49,7 +49,7 @@ public class Question7 {
 		}
 	}
 	public static void main(String[] args) {
-		countBugsByStatus("Closed");
+		sortBugsByPriority();
 	}
 
 }

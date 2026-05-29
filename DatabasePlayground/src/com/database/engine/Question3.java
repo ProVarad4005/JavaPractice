@@ -29,8 +29,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Question3 {
-
-	public static void main(String[] args) {
+	public static void insertBug() {
 		Scanner sc = new Scanner(System.in);
 		String url="jdbc:mysql://localhost:3306/practice";
 		String username="root";
@@ -54,10 +53,13 @@ public class Question3 {
 			System.out.println("Dynamic bug saved to database!");
 			pstmt.close();
 			con.close();
-			sc.close();
+//			sc.close();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void main(String[] args) {
+		insertBug();
 	}
 
 }
